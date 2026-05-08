@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowPrice - Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">ShadowPrice</div>
+            <ul class="nav-links" id="sidebarNav">
+                <li><a href="#" class="active" data-view="dashboard">📊 Dashboard</a></li>
+                <li><a href="#" data-view="settings">⚙️ Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <!-- Topbar -->
+            <nav class="topbar">
+                <input type="text" id="searchInput" class="topbar-search" placeholder="Search subscriptions...">
+                <div class="topbar-profile">
+                    <span id="userGreeting" style="font-weight: 500;"></span>
+                </div>
+            </nav>
+
+            <div class="container" id="mainContainer">
+                <!-- Dashboard View -->
+                <div id="view-dashboard" class="view-section">
+                    <main class="dashboard-grid">
+            <div class="hero-stats">
+                <div class="stat-card glass total">
+                    <h3>Monthly Spending</h3>
+                    <div class="value" id="monthlyTotal">₹0.00</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Estimated 5-Year Cost: <span id="fiveYearTotal" style="color: var(--text-main); font-weight: 600;">₹0.00</span></p>
+                </div>
+                <div class="stat-card glass wasted">
+                    <h3>Money Wasted This Year</h3>
+                    <div class="value" id="yearlyWasted">₹0.00</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Based on unused / rarely used subs</p>
+                </div>
+                <div class="stat-card glass health">
+                    <h3>Sub Health Score</h3>
+                    <div class="value" id="healthScore">100/100</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;" id="healthMessage">You're doing great!</p>
+                </div>
+            </div>
+
+            <div class="subs-section">
+                <div class="section-header">
+                    <h2>Your Subscriptions</h2>
+                </div>
+                <div class="subs-list" id="subsList">
+                    <!-- Dynamic Content -->
+                    <div style="text-align: center; padding: 2rem; color: var(--text-muted);">Loading...</div>
+                </div>
+            </div>
+
+            <div class="add-sub-section">
+                <div class="add-sub-card glass chart-container" style="margin-bottom: 2rem; padding: 1.5rem;">
+                    <h3 style="margin-bottom: 1rem; text-align: center;">Spending by Category</h3>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+
+                <div class="add-sub-card glass">
+                    <h3 style="margin-bottom: 1.5rem;">Add Subscription</h3>
+                    <form id="addSubForm">
+                        <div class="input-group">
+                            <label>Service Name</label>
+                            <input type="text" id="subName" required placeholder="e.g. Netflix">
+                        </div>
+                        <div class="input-group">
+                            <label>Price (₹)</label>
+                            <input type="number" step="0.01" id="subPrice" required placeholder="649">
+                        </div>
+                        <div class="input-group">
+                            <label>Billing Cycle</label>
+                            <select id="subCycle">
+                                <option value="monthly">Monthly</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Category</label>
+                            <select id="subCategory">
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Software">Software</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Health">Health</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Usage Status</label>
+                            <select id="subUsageStatus">
+                                <option value="Active">Active (Used Regularly)</option>
+                                <option value="Rarely Used">Rarely Used</option>
+                                <option value="Unused">Unused (Forgot about it)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Next Renewal Date</label>
+                            <input type="date" id="subDate" required>
+                        </div>
+                        <button type="submit" class="btn">Track Subscription</button>
+                    </form>
+                </div>
+            </div>
+                    </main>
+                </div>
+
+                <!-- Settings View -->
+                <div id="view-settings" class="view-section hidden-view">
+                    <div class="settings-card glass">
+                        <h2>Settings</h2>
+                        <div class="settings-row">
+                            <div>
+                                <h4>Light Theme</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Switch to a brighter interface</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="themeToggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-row">
+                            <div>
+                                <h4>Account</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Manage your active session</p>
+                            </div>
+                            <div style="display: flex; gap: 10px;">
+                                <button id="logoutBtn" class="btn btn-danger" style="padding: 0.5rem 1rem;">Logout</button>
+                                <button id="changeUserBtn" class="btn" style="padding: 0.5rem 1rem;">Change User</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

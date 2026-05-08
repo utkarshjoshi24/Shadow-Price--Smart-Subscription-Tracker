@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowPrice - Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card glass" id="authBox">
+            <h2 id="authTitle">Welcome to ShadowPrice</h2>
+            <form id="authForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required placeholder="Enter your username">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn" id="authBtn">Login</button>
+            </form>
+            <div class="auth-switch" id="authSwitchText">
+                Don't have an account? <span id="toggleAuth">Sign Up</span>
+            </div>
+            <div id="authError" style="color: var(--danger); margin-top: 15px; font-size: 0.9rem; display: none;"></div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+</body>
+</html>
