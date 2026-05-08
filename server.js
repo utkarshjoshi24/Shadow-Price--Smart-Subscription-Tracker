@@ -39,11 +39,15 @@ app.get('/', (req, res) => {
     res.redirect('/login');
 });
 
+// Start server immediately so Render doesn't crash
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
 // Database connection
 const dbURI = process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/shadowprice';
 mongoose.connect(dbURI).then(() => {
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }).catch(err => {
-    console.error('MongoDB connection error:', err);
+    console.error('MongoDB connection error. Please verify MONGODB_URI on Render:', err.message);
 });
